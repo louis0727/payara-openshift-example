@@ -49,10 +49,10 @@ RUN echo "admin;{SSHA256}80e0NeB6XBWXsIPa7pT54D9JZ5DR5hGQV1kN1OAsgJePNXY6Pl0EIw=
 RUN echo "AS_ADMIN_PASSWORD=glassfish" > pwdfile
 
 # enable secure admin to access DAS remotely. Note we are using the domain payaradomain
-RUN \
-  ./asadmin start-domain payaradomain && \
-  ./asadmin --user admin --passwordfile pwdfile enable-secure-admin && \
-  ./asadmin stop-domain payaradomain
+# RUN \
+#  ./asadmin start-domain payaradomain && \
+#  ./asadmin --user admin --passwordfile pwdfile enable-secure-admin && \
+#  ./asadmin stop-domain payaradomain
 
 CMD ["/opt/payara41/glassfish/bin/asadmin", "start-domain","-v","payaradomain"]
 
