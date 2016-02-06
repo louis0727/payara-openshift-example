@@ -56,5 +56,8 @@ RUN echo "AS_ADMIN_PASSWORD=glassfish" > pwdfile
   ./asadmin --user admin --passwordfile pwdfile enable-secure-admin && \
   ./asadmin stop-domain payaradomain
 
+# copy example
+COPY restexample.war /opt/payara41/glassfish/domains/payaradomain/autodeploy/
+
 CMD ["/opt/payara41/glassfish/bin/asadmin", "start-domain","-v","payaradomain"]
 
