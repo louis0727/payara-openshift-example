@@ -35,8 +35,6 @@ RUN useradd -b /opt -m -s /bin/bash payara && echo payara:payara | chpasswd
 RUN cd /opt && curl -O $PAYARA_PKG && unzip $PKG_FILE_NAME && rm $PKG_FILE_NAME
 RUN cd /opt/payara41/glassfish/lib && curl -O $MYSQL_JAR
 RUN chown -R payara:payara /opt/payara41*
-RUN chmod -R a+r /opt/payara41*
-RUN chmod -R a+w /opt/payara41*
 RUN apt-get clean
 
 # Default payara ports to expose
@@ -58,6 +56,10 @@ RUN \
 
 # copy example
 COPY restexample.war /opt/payara41/glassfish/domains/payaradomain/autodeploy/
+
+USER root
+RUN chmod -R a+w /opt/payara41
+USER payara
 
 CMD ["/opt/payara41/glassfish/bin/asadmin", "start-domain","-v","payaradomain"]
 
