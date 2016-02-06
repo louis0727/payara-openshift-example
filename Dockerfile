@@ -34,16 +34,14 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 RUN useradd -b /opt -m -s /bin/bash payara && echo payara:payara | chpasswd
 RUN cd /opt && curl -O $PAYARA_PKG && unzip $PKG_FILE_NAME && rm $PKG_FILE_NAME
 RUN cd /opt/payara41/glassfish/lib && curl -O $MYSQL_JAR
-RUN chown -cR nobody /opt/payara41*
+RUN chown -R payara:payara /opt/payara41*
 RUN apt-get clean
-
-# restrict image
-USER nobody
 
 # Default payara ports to expose
 EXPOSE 4848 8009 8080 8181
 
 # Set up payara user and the home directory for the user
+USER payara
 WORKDIR /opt/payara41/glassfish/bin
 
 # User: admin / Pass: glassfish
@@ -51,7 +49,7 @@ RUN echo "admin;{SSHA256}80e0NeB6XBWXsIPa7pT54D9JZ5DR5hGQV1kN1OAsgJePNXY6Pl0EIw=
 RUN echo "AS_ADMIN_PASSWORD=glassfish" > pwdfile
 
 # enable secure admin to access DAS remotely. Note we are using the domain payaradomain
- RUN \
+RUN \
   ./asadmin start-domain payaradomain && \
   ./asadmin --user admin --passwordfile pwdfile enable-secure-admin && \
   ./asadmin stop-domain payaradomain
