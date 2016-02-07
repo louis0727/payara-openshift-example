@@ -22,7 +22,7 @@ Add the example as an app
 The example runs the payara glassfish server with an MySQL library for DB connections. An example app is added into the /autodeploy folder which can be accessed
 
 ```
-  /restexample/hello
+  <url>/sample/hello
 ```
 
 Keep in mind that Docker container must run by default as non root. Openshift runs container with a random user. Therefore all folders and files are made writeable for all user
