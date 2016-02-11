@@ -41,25 +41,25 @@ RUN apt-get clean
 EXPOSE 4848 8009 8080 8181
 
 # Set up payara user and the home directory for the user
-USER payara
+# USER payara
 WORKDIR /opt/payara41/glassfish/bin
 
 # User: admin / Pass: glassfish
-RUN echo "admin;{SSHA256}80e0NeB6XBWXsIPa7pT54D9JZ5DR5hGQV1kN1OAsgJePNXY6Pl0EIw==;asadmin" > /opt/payara41/glassfish/domains/payaradomain/config/admin-keyfile
-RUN echo "AS_ADMIN_PASSWORD=glassfish" > pwdfile
+# RUN echo "admin;{SSHA256}80e0NeB6XBWXsIPa7pT54D9JZ5DR5hGQV1kN1OAsgJePNXY6Pl0EIw==;asadmin" > /opt/payara41/glassfish/domains/payaradomain/config/admin-keyfile
+# RUN echo "AS_ADMIN_PASSWORD=glassfish" > pwdfile
 
 # enable secure admin to access DAS remotely. Note we are using the domain payaradomain
-RUN \
-  ./asadmin start-domain payaradomain && \
-  ./asadmin --user admin --passwordfile pwdfile enable-secure-admin && \
-  ./asadmin stop-domain payaradomain
+# RUN \
+#  ./asadmin start-domain payaradomain && \
+#  ./asadmin --user admin --passwordfile pwdfile enable-secure-admin && \
+#  ./asadmin stop-domain payaradomain
 
 # copy example
 COPY sample.war /opt/payara41/glassfish/domains/payaradomain/autodeploy/
 
-USER root
+# USER root
 RUN chmod -R a+w /opt/payara41
-USER payara
+# USER payara
 
 CMD ["/opt/payara41/glassfish/bin/asadmin", "start-domain","-v","payaradomain"]
 
