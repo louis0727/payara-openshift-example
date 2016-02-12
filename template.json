@@ -17,7 +17,7 @@
       "kind": "Service",
       "apiVersion": "v1",
       "metadata": {
-        "name": "payara-example",
+        "name": "${APPLICATION_NAME}",
         "annotations": {
           "description": "Exposes and load balances the application pods"
         }
@@ -36,7 +36,7 @@
           }
         ],
         "selector": {
-          "name": "payara-example"
+          "name": "${APPLICATION_NAME}"
         }
       }
     },
@@ -44,12 +44,12 @@
       "kind": "Route",
       "apiVersion": "v1",
       "metadata": {
-        "name": "payara-example"
+        "name": "${APPLICATION_NAME}"
       },
       "spec": {
         "host": "${APPLICATION_DOMAIN}",
         "to": {
-          "name": "payara-example"
+          "name": "${APPLICATION_NAME}"
           "kind": "Service",
         }
       }
@@ -58,7 +58,7 @@
       "kind": "ImageStream",
       "apiVersion": "v1",
       "metadata": {
-        "name": "payara-example",
+        "name": "${APPLICATION_NAME}",
         "annotations": {
           "description": "Keeps track of changes in the application image"
         }
@@ -68,7 +68,7 @@
       "kind": "BuildConfig",
       "apiVersion": "v1",
       "metadata": {
-        "name": "payara-example",
+        "name": "${APPLICATION_NAME}",
         "annotations": {
           "description": "Defines how to build the application"
         }
@@ -89,13 +89,19 @@
               "kind": "ImageStreamTag",
               "namespace": "test",
               "name": "ubuntu:latest"
-            }
+            },
+            "env": [
+                {
+                    "name": "APPLICATION_WAR",
+                    "value": "${APPLICATION_WAR}"
+                }
+            ]
           }
         },
         "output": {
           "to": {
             "kind": "ImageStreamTag",
-            "name": "payara-example:latest"
+            "name": "${APPLICATION_NAME}:latest"
           }
         },
         "triggers": [
@@ -124,7 +130,7 @@
       "kind": "DeploymentConfig",
       "apiVersion": "v1",
       "metadata": {
-        "name": "payara-example",
+        "name": "${APPLICATION_NAME}",
         "annotations": {
           "description": "Defines how to deploy the application server"
         }
@@ -139,11 +145,11 @@
             "imageChangeParams": {
               "automatic": true,
               "containerNames": [
-                "payara-example"
+                "${APPLICATION_NAME}"
               ],
               "from": {
                 "kind": "ImageStreamTag",
-                "name": "payara-example:latest"
+                "name": "${APPLICATION_NAME}:latest"
               }
             }
           },
@@ -153,7 +159,7 @@
         ],
         "replicas": 1,
         "selector": {
-          "name": "payara-example"
+          "name": "${APPLICATION_NAME}"
         },
         "template": {
           "metadata": {
@@ -165,8 +171,8 @@
           "spec": {
             "containers": [
               {
-                "name": "payara-example",
-                "image": "payara-example",
+                "name": "${APPLICATION_NAME}",
+                "image": "${APPLICATION_NAME}",
                 "ports": [
                   {
                     "containerPort": 8080,
@@ -248,6 +254,11 @@
       "generate": "expression",
       "from": "[a-zA-Z0-9]{40}",
       "value": "QQrhFXNs9pGqf_BiqhB_"
+    },
+    {
+      "name": "APPLICATION_WAR",
+      "description": "Name of the application war",
+      "value": "sample.war"
     },
     {
       "name": "DATABASE_SERVICE_NAME",

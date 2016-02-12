@@ -3,7 +3,7 @@ FROM ubuntu
 
 # Maintainer
 # ----------
-MAINTAINER David Winters <dwinters@c2b2.co.uk>
+MAINTAINER snoopyCode
 
 ENV PAYARA_PKG https://s3-eu-west-1.amazonaws.com/payara.co/Payara+Downloads/payara-4.1.152.1.zip
 ENV PKG_FILE_NAME payara-4.1.152.1.zip
@@ -41,7 +41,6 @@ RUN apt-get clean
 EXPOSE 4848 8009 8080 8181
 
 # Set up payara user and the home directory for the user
-# USER payara
 WORKDIR /opt/payara41/glassfish/bin
 
 # User: admin / Pass: glassfish
@@ -54,12 +53,11 @@ RUN \
   ./asadmin --user admin --passwordfile pwdfile enable-secure-admin && \
   ./asadmin stop-domain payaradomain
 
-# copy example
+# copy example. Variable APPLICATION_WAR will be set by the template
 COPY $APPLICATION_WAR /opt/payara41/glassfish/domains/payaradomain/autodeploy/
 
-# USER root
+# make everything writable for everyone because the container should be runable by random user
 RUN chmod -R a+w /opt/payara41
-# USER payara
 
 CMD ["/opt/payara41/glassfish/bin/asadmin", "start-domain","-v","payaradomain"]
 
