@@ -189,20 +189,16 @@
                     "value": "${DATABASE_SERVICE_NAME}"
                   },
                   {
-                    "name": "MONGODB_USER",
-                    "value": "${MONGODB_USER}"
+                    "name": "MYSQL_USER",
+                    "value": "${MYSQL_USER}"
                   },
                   {
-                    "name": "MONGODB_PASSWORD",
-                    "value": "${MONGODB_PASSWORD}"
+                    "name": "MYSQL_PASSWORD",
+                    "value": "${MYSQL_PASSWORD}"
                   },
                   {
-                    "name": "MONGODB_DATABASE",
-                    "value": "${MONGODB_DATABASE}"
-                  },
-                  {
-                    "name": "MONGODB_ADMIN_PASSWORD",
-                    "value": "${MONGODB_ADMIN_PASSWORD}"
+                    "name": "MYSQL_DATABASE",
+                    "value": "${MYSQL_DATABASE}"
                   }
                 ]
               }
@@ -233,7 +229,7 @@
     },
     {
       "name": "APPLICATION_DOMAIN",
-      "description": "The exposed hostname that will route to the Node.js service, if left blank a value will be defaulted.",
+      "description": "The exposed hostname that will route to the Java sample service, if left blank a value will be defaulted.",
       "value": ""
     },
     {
@@ -265,20 +261,16 @@
       "description": "Database service name"
     },
     {
-      "name": "MONGODB_USER",
-      "description": "Username for MongoDB user that will be used for accessing the database"
+      "name": "MYSQL_USER",
+      "description": "Username for MySQL user that will be used for accessing the database"
     },
     {
-      "name": "MONGODB_PASSWORD",
-      "description": "Password for the MongoDB user"
+      "name": "MYSQL_PASSWORD",
+      "description": "Password for the MySQL user"
     },
     {
-      "name": "MONGODB_DATABASE",
+      "name": "MYSQL_DATABASE",
       "description": "Database name"
-    },
-    {
-      "name": "MONGODB_ADMIN_PASSWORD",
-      "description": "Password for the database admin user"
     }
   ]
 }
