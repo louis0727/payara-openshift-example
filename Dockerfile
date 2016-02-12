@@ -55,7 +55,7 @@ RUN \
   ./asadmin stop-domain payaradomain
 
 # copy example
-COPY sample.war /opt/payara41/glassfish/domains/payaradomain/autodeploy/
+COPY $APPLICATION_WAR /opt/payara41/glassfish/domains/payaradomain/autodeploy/
 
 # USER root
 RUN chmod -R a+w /opt/payara41
