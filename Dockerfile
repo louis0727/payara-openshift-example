@@ -49,10 +49,10 @@ WORKDIR /opt/payara41/glassfish/bin
 # RUN echo "AS_ADMIN_PASSWORD=glassfish" > pwdfile
 
 # enable secure admin to access DAS remotely. Note we are using the domain payaradomain
-# RUN \
-#  ./asadmin start-domain payaradomain && \
-#  ./asadmin --user admin --passwordfile pwdfile enable-secure-admin && \
-#  ./asadmin stop-domain payaradomain
+RUN \
+  ./asadmin start-domain payaradomain && \
+  ./asadmin --user admin --passwordfile pwdfile enable-secure-admin && \
+  ./asadmin stop-domain payaradomain
 
 # copy example
 COPY sample.war /opt/payara41/glassfish/domains/payaradomain/autodeploy/
