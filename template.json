@@ -93,7 +93,7 @@
             "env": [
                 {
                     "name": "APPLICATION_WAR",
-                    "value": "${APPLICATION_WAR}"
+                    "value": "${APPLICATION_WAR}.war"
                 }
             ]
           }
@@ -203,7 +203,7 @@
                 ],
                 "livenessProbe": {
                     "httpGet": {
-                        "path": "/sample/health",
+                        "path": "/${APPLICATION_WAR_NAME}/health",
                         "port": 8080,
                         "scheme": "HTTP"
                     },
@@ -261,9 +261,9 @@
       "value": "QQrhFXNs9pGqf_BiqhB_"
     },
     {
-      "name": "APPLICATION_WAR",
+      "name": "APPLICATION_WAR_NAME",
       "description": "Name of the application war",
-      "value": "sample.war"
+      "value": "sample"
     },
     {
       "name": "DATABASE_SERVICE_NAME",
