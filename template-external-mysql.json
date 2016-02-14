@@ -1,0 +1,67 @@
+{
+  "kind": "Template",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "mysql-external",
+    "annotations": {
+      "description": "An example external mysql application",
+      "tags": "mysql",
+      "iconClass": "icon-nodejs"
+    }
+  },
+  "labels": {
+    "template": "mysql-external"
+  },
+  "objects": [
+    {
+      "kind": "Service",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${APPLICATION_NAME}",
+        "annotations": {
+          "description": "Exposes and load balances the application pods"
+        }
+      },
+      "spec": {
+        "ports": [
+          {
+            "name": "mysql",
+            "protocol": "TCP",
+            "port": 3306,
+            "targetPort": 3306,
+            "nodePort": 0
+          }
+        ],
+        "selector": {}
+      }
+    },
+    {
+      "kind": "Endpoints",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${APPLICATION_NAME}" 
+      },
+      "subsets": [ 
+        {
+          "addresses":  [
+            { "IP": "${EXTERNAL_MYSQL_IP}" } 
+          ],
+          "ports":  [
+            { "port": 3306, "name": "mysql" } 
+          ]
+        }
+      ]
+    }
+  ],
+  "parameters": [
+    {
+      "name": "APPLICATION_NAME",
+      "description": "Name of the service",
+      "value": "external-mysql"
+    },
+    {
+      "name": "EXTERNAL_MYSQL_IP",
+      "description": "IP of the database"
+    }   
+  ]
+}
