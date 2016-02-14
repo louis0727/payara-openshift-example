@@ -200,7 +200,16 @@
                     "name": "MYSQL_DATABASE",
                     "value": "${MYSQL_DATABASE}"
                   }
-                ]
+                ],
+                "livenessProbe": {
+                    "httpGet": {
+                        "path": "/sample/health",
+                        "port": 8080,
+                        "scheme": "HTTP"
+                    },
+                    "initialDelaySeconds": 120,
+                    "timeoutSeconds": 5
+                }
               }
             ]
           }
