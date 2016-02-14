@@ -163,9 +163,9 @@
         },
         "template": {
           "metadata": {
-            "name": "payara-example-2",
+            "name": "${APPLICATION_NAME}",
             "labels": {
-              "name": "payara-example-2"
+              "name": "${APPLICATION_NAME}"
             }
           },
           "spec": {
