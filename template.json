@@ -2,7 +2,7 @@
   "kind": "Template",
   "apiVersion": "v1",
   "metadata": {
-    "name": "payara-example",
+    "name": "payara-example-2",
     "annotations": {
       "description": "An example Payara application",
       "tags": "payara",
@@ -10,7 +10,7 @@
     }
   },
   "labels": {
-    "template": "payara-example"
+    "template": "payara-example-2"
   },
   "objects": [
     {
@@ -30,7 +30,7 @@
             "targetPort": 8080
           },
           { 
-            "name": "web",
+            "name": "admin",
             "port": 4848,
             "targetPort": 4848
           }
@@ -49,8 +49,8 @@
       "spec": {
         "host": "${APPLICATION_DOMAIN}",
         "to": {
-          "name": "${APPLICATION_NAME}"
-          "kind": "Service",
+          "name": "${APPLICATION_NAME}",
+          "kind": "Service"
         }
       }
     },
@@ -163,9 +163,9 @@
         },
         "template": {
           "metadata": {
-            "name": "payara-example",
+            "name": "payara-example-2",
             "labels": {
-              "name": "payara-example"
+              "name": "payara-example-2"
             }
           },
           "spec": {
@@ -221,7 +221,7 @@
     {
       "name": "APPLICATION_NAME",
       "description": "Name of the application",
-      "value": "payara-example"
+      "value": "payara-example-2"
     },
     {
       "name": "SOURCE_REPOSITORY_URL",
@@ -267,7 +267,8 @@
     },
     {
       "name": "DATABASE_SERVICE_NAME",
-      "description": "Database service name"
+      "description": "Database service name",
+      "value": "MYSQL"
     },
     {
       "name": "MYSQL_USER",
