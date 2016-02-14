@@ -189,15 +189,15 @@
                     "value": "${DATABASE_SERVICE_NAME}"
                   },
                   {
-                    "name": "MYSQL_USER",
+                    "name": "${DATABASE_SERVICE_NAME}_USER",
                     "value": "${MYSQL_USER}"
                   },
                   {
-                    "name": "MYSQL_PASSWORD",
+                    "name": "${DATABASE_SERVICE_NAME}_PASSWORD",
                     "value": "${MYSQL_PASSWORD}"
                   },
                   {
-                    "name": "MYSQL_DATABASE",
+                    "name": "${DATABASE_SERVICE_NAME}_DATABASE",
                     "value": "${MYSQL_DATABASE}"
                   }
                 ],
