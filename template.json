@@ -93,7 +93,7 @@
             "env": [
                 {
                     "name": "APPLICATION_WAR",
-                    "value": "${APPLICATION_WAR}.war"
+                    "value": "${APPLICATION_WAR_NAME}.war"
                 }
             ]
           }
