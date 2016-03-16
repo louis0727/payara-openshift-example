@@ -87,7 +87,6 @@
           "dockerStrategy": {
             "from": {
               "kind": "ImageStreamTag",
-              "namespace": "test",
               "name": "ubuntu:latest"
             },
             "env": [
