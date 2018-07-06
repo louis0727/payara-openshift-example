@@ -15,7 +15,7 @@ RUN \
  apt-get update && \ 
  apt-get install -y unzip && \
  apt-get install -y curl && \ 
- apt-get install -y software-properties-common python-software-properties --assume-yes apt-utils
+ apt-get install -y software-properties-common --assume-yes apt-utils
 
 
 # Install Java 8, agree to oracle jdk license
