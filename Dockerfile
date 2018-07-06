@@ -8,14 +8,14 @@ MAINTAINER snoopyCode
 ENV PAYARA_PKG https://s3-eu-west-1.amazonaws.com/payara.co/Payara+Downloads/payara-4.1.152.1.zip
 ENV PKG_FILE_NAME payara-4.1.152.1.zip
 ENV MYSQL_JAR http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.37/mysql-connector-java-5.1.37.jar
-
+ARG DEBIAN_FRONTEND=noninteractive
 #Instal packages on ubuntu base image
 
 RUN \
  apt-get update && \ 
  apt-get install -y unzip && \
  apt-get install -y curl && \ 
- apt-get install -y software-properties-common python-software-properties
+ apt-get install -y software-properties-common python-software-properties --assume-yes apt-utils
 
 
 # Install Java 8, agree to oracle jdk license
